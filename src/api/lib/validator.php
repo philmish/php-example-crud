@@ -11,7 +11,7 @@ abstract class Filter {
         $this->args = $args;
     }
 
-    abstract public function runFilter(array $data, array $args): array;
+    abstract public function runFilter(array $data, array $errors): array;
 }
 
 final class Required extends Filter {
