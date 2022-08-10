@@ -10,6 +10,7 @@ spl_autoload_register(
                 'apiresponse' => '/api/lib/response.php',
                 'mvcex\\api\\lib\\basecollection' => '/api/lib/model.php',
                 'mvcex\\api\\lib\\basemodel' => '/api/lib/model.php',
+                'mvcex\\api\\lib\\controller' => '/api/lib/controller.php',
                 'mvcex\\api\\lib\\dbconnector' => '/api/lib/database.php',
                 'mvcex\\api\\lib\\filter' => '/api/lib/validator.php',
                 'mvcex\\api\\lib\\required' => '/api/lib/validator.php',
