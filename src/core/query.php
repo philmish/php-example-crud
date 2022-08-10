@@ -3,5 +3,5 @@
 namespace mvcex\core;
 
 interface Query {
-    public static function fromRuest(Request $request);
+    public static function fromRequest(Request $request);
 }
