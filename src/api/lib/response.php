@@ -30,4 +30,6 @@ abstract class APIResponse implements Response {
     {
         http_response_code($this->status);
     }
+
+    abstract static public function fromQueryResult(array $result): self;
 }

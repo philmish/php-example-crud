@@ -5,4 +5,5 @@ namespace mvcex\core;
 interface Response {
     public function toJSON(): string;
     public function sendStatus(): void;
+    static function fromQueryResult(array $result): self;
 }

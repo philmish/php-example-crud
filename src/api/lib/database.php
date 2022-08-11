@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
 namespace mvcex\api\lib;
+
+use Exception;
 use mvcex\core\Database;
 use mvcex\core\Query;
 use mvcex\core\Response;
@@ -15,6 +17,19 @@ abstract class DBConnector implements Database {
        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    abstract public function executeQuery(Query $query): Response;
-    abstract static public function fromEnv(): self;
+    public function executeQuery(Query $query): Response {
+        $data = $query->execute($this->pdo);
+        return new Response->fromArray($data);
+    }
+
+    static public function fromEnv(): self {
+        $dsn = getenv("DB_ADDR");
+        $user = getenv("DB_USER");
+        $pass = getenv("DB_PASS");
+        if (!$dsn || !$user || !$pass) {
+            throw new Exception("Missing env vars.");
+        } else {
+            return new self($dsn, $user, $pass);
+        }
+    }
 }
