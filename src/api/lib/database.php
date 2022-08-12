@@ -19,7 +19,7 @@ abstract class DBConnector implements Database {
 
     public function executeQuery(Query $query): Response {
         $data = $query->execute($this->pdo);
-        return new Response->fromArray($data);
+        return Response::fromQueryResult($data);
     }
 
     static public function fromEnv(): self {
