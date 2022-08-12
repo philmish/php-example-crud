@@ -1,0 +1,30 @@
+version: "3.9"
+volumes:
+  dbdata:
+  code:
+services:
+  webserver:
+    container_name: webserver
+    build:
+      context: .docker
+      dockerfile: DockerfileWS
+    environment:
+      DB_HOST: "${DB_HOST}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_DATABASE: "${DB_DATABASE}"
+    ports:
+      - "89:80"
+    volumes:
+      - /:/var/www/html
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - db:/var/lib/mysql
+      - ./docker/mariadb:/docker-entrypoint-initdb.d
