@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace mvcex\api\routes;
+
 use PDO;
 use \mvcex\core\Request;
 
@@ -13,8 +15,8 @@ final class LoginRequest implements Request {
         $this->password = $password; 
     }
 
-    public function passCorrect(string $passHash): bool {
-        return password_verify($this->password, $passHash);
+    public function getPass(): string {
+        return $this->password;
     }
 
     public function toQuery(): object
@@ -24,7 +26,8 @@ final class LoginRequest implements Request {
             $args = [$this->email];
             $prep = $db->prepare($stmt);
             $prep->execute($args);
-            return $prep->fetchAll(PDO::FETCH_ASSOC);
+            $res =$prep->fetchAll(PDO::FETCH_ASSOC);
+            return $res;
         }; 
     }
 
