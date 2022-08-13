@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS Users
     PRIMARY KEY (id)
 );
 
-INSERT INTO Users
+INSERT INTO Users (email, password, name)
 VALUES ("test@mail.com", "$2a$10$l8xcC6m0AjE0wzURkblhR.ZdkyUq/nCYDixRNwYcVS8Ox04gW1ITm", "test");

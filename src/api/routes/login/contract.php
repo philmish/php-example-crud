@@ -7,7 +7,6 @@ use mvcex\api\lib\RouteContract;
 
 final class LoginContract extends RouteContract {
     protected function POST(): void {
-        print_r("Hit login endpoint");
         try {
             $controller = LoginController::fromEnv();
             $result = $controller->execute();
