@@ -17,15 +17,5 @@ abstract class DBConnector implements Database {
     }
 
     abstract public function executeQuery(Query $query): APIResponse|array;
-
-    static public function fromEnv(): self {
-        $dsn = getenv("DB_ADDR");
-        $user = getenv("DB_USER");
-        $pass = getenv("DB_PASS");
-        if (!$dsn || !$user || !$pass) {
-            throw new Exception("Missing env vars.");
-        } else {
-            return new self($dsn, $user, $pass);
-        }
-    }
+    abstract static public function fromEnv(): self;
 }

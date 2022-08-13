@@ -12,8 +12,8 @@ final class LoginContract extends RouteContract {
             $result = $controller->execute();
             echo $result->toJSON();
             $result->sendStatus();
-        } catch( Exception ) {
-            echo json_encode(["error" => "No DB connection"]);
+        } catch( Exception $e) {
+            echo json_encode(["error" => $e->getMessage()]);
             http_response_code(503);
         }
     }

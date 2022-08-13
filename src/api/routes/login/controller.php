@@ -16,6 +16,9 @@ final class LoginController extends Controller {
     protected function parseRequest(): LoginRequest {
         $data = file_get_contents('php://input');
         $decoded = json_decode($data, true);
+        if (!is_array($decoded)) {
+            throw new Exception("Missing input");
+        }
         if (!array_key_exists("email", $decoded) || !array_key_exists("password", $decoded)) {
             throw new Exception("Missing data."); 
         }
