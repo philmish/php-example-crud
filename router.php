@@ -5,13 +5,15 @@ require_once('src/autoload.php');
 
 use Exception;
 use mvcex\api\routes\LoginContract;
+use mvcex\api\routes\NotFoundContract;
 
 $uri = rtrim($_SERVER['REQUEST_URI'], '/');
 $path = explode('?', $uri)[0];
 
 try {
     $route = match ($uri) {
-    '/login' => new LoginContract()
+    '/login' => new LoginContract(),
+    default => new NotFoundContract(),
 }; $route->serve();
 } catch (Exception $e) {
     echo $e->getMessage();
