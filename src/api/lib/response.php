@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace mvcex\api\lib;
+
 use mvcex\api\lib\BaseCollection;
 use mvcex\api\lib\BaseModel;
 use mvcex\core\Response;
@@ -9,7 +11,7 @@ abstract class APIResponse implements Response {
     protected array $errors;
     protected BaseModel|BaseCollection|false $data;
 
-    public function __construct(int $status, array $errors = [], bool $data = false)
+    public function __construct(int $status, array $errors = [], bool|array $data = false)
     {
         $this->status = $status;
         $this->errors = $errors;
@@ -31,5 +33,5 @@ abstract class APIResponse implements Response {
         http_response_code($this->status);
     }
 
-    abstract static public function fromQueryResult(array $result): self;
+    abstract static public function fromQueryResult(array $result, ?string ...$args): self;
 }

@@ -17,10 +17,7 @@ abstract class DBConnector implements Database {
        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function executeQuery(Query $query): Response {
-        $data = $query->execute($this->pdo);
-        return Response::fromQueryResult($data);
-    }
+    abstract public function executeQuery(Query $query): APIResponse|array;
 
     static public function fromEnv(): self {
         $dsn = getenv("DB_ADDR");
