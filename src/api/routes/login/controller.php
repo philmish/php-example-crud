@@ -8,6 +8,11 @@ use mvcex\core\Query;
 
 final class LoginController extends Controller {
 
+    static public function fromEnv(): self
+    {
+       return new self(DB::fromEnv()); 
+    }
+
     protected function parseRequest(): LoginRequest {
         $data = file_get_contents('php://input');
         $decoded = json_decode($data, true);

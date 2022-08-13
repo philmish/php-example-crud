@@ -5,13 +5,12 @@ namespace mvcex\api\lib;
 use Exception;
 use mvcex\core\Database;
 use mvcex\core\Query;
-use mvcex\core\Response;
 use PDO;
 
 abstract class DBConnector implements Database {
     protected PDO $pdo;
 
-    public function __construct(string $dsn, string $user, string $pass): void
+    public function __construct(string $dsn, string $user, string $pass)
     {
        $this->pdo = new PDO($dsn, $user, $pass);
        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
