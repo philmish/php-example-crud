@@ -6,10 +6,10 @@ services:
   webserver:
     container_name: webserver
     build:
-      context: .docker
-      dockerfile: DockerfileWS
+      context: docker/apache
+      dockerfile: Dockerfile
     environment:
-      DB_HOST: "${DB_HOST}"
+      DB_ADDR: "${DB_ADDR}"
       DB_USER: "${DB_USER}"
       DB_PASSWORD: "${DB_PASSWORD}"
       DB_DATABASE: "${DB_DATABASE}"
