@@ -21,6 +21,7 @@ spl_autoload_register(
                 'mvcex\\api\\routes\\logincontroller' => '/api/routes/login/controller.php',
                 'mvcex\\api\\routes\\loginrequest' => '/api/routes/login/request.php',
                 'mvcex\\api\\routes\\loginresponse' => '/api/routes/login/response.php',
+                'mvcex\\api\\routes\\notfoundcontract' => '/api/routes/NotFound/contract.php',
                 'mvcex\\core\\database' => '/core/database.php',
                 'mvcex\\core\\query' => '/core/query.php',
                 'mvcex\\core\\request' => '/core/request.php',
