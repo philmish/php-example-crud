@@ -7,8 +7,7 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'apiresponse' => '/api/lib/response.php',
-                'loginrequest' => '/api/routes/login/request.php',
+                'mvcex\\api\\lib\\apiresponse' => '/api/lib/response.php',
                 'mvcex\\api\\lib\\basecollection' => '/api/lib/model.php',
                 'mvcex\\api\\lib\\basemodel' => '/api/lib/model.php',
                 'mvcex\\api\\lib\\controller' => '/api/lib/controller.php',
@@ -17,7 +16,11 @@ spl_autoload_register(
                 'mvcex\\api\\lib\\required' => '/api/lib/validator.php',
                 'mvcex\\api\\lib\\routecontract' => '/api/lib/route.php',
                 'mvcex\\api\\lib\\validator' => '/api/lib/validator.php',
+                'mvcex\\api\\routes\\db' => '/api/routes/login/db.php',
                 'mvcex\\api\\routes\\logincontract' => '/api/routes/login/contract.php',
+                'mvcex\\api\\routes\\logincontroller' => '/api/routes/login/controller.php',
+                'mvcex\\api\\routes\\loginrequest' => '/api/routes/login/request.php',
+                'mvcex\\api\\routes\\loginresponse' => '/api/routes/login/response.php',
                 'mvcex\\core\\database' => '/core/database.php',
                 'mvcex\\core\\query' => '/core/query.php',
                 'mvcex\\core\\request' => '/core/request.php',
