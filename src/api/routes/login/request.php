@@ -27,7 +27,7 @@ final class LoginRequest implements Request {
             $args = [$this->email];
             $prep = $db->prepare($stmt);
             $prep->execute($args);
-            $res =$prep->fetchAll(PDO::FETCH_ASSOC);
+            $res =$prep->fetch(PDO::FETCH_ASSOC);
             return $res;
         }; 
     }
