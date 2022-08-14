@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS Users
 );
 
 INSERT INTO Users (email, password, name)
-VALUES ("test@mail.com", "$2a$10$l8xcC6m0AjE0wzURkblhR.ZdkyUq/nCYDixRNwYcVS8Ox04gW1ITm", "test");
+VALUES ("test@mail.com", "$1$jwGbpR.A$zYCjQtuXUwR.aauJuU8He0", "test");

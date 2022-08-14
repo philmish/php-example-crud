@@ -3,6 +3,7 @@
 namespace mvcex\api\routes;
 
 use PDO;
+use Closure;
 use \mvcex\core\Request;
 
 final class LoginRequest implements Request {
@@ -19,7 +20,7 @@ final class LoginRequest implements Request {
         return $this->password;
     }
 
-    public function toQuery(): object
+    public function toQuery(): Closure
     {
         return function (PDO $db): array {
             $stmt = "SELECT name, password FROM Users WHERE email = ?";

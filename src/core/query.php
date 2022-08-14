@@ -2,10 +2,11 @@
 
 namespace mvcex\core;
 
+use Closure;
 use PDO;
 
 final class Query {
-    protected callable $func;
+    protected Closure $func;
 
     protected function __construct(callable $func) {
         $this->func = $func;
