@@ -9,9 +9,9 @@ use mvcex\core\Response;
 abstract class APIResponse implements Response {
     protected int $status;
     protected array $errors;
-    protected BaseModel|BaseCollection|false $data;
+    protected BaseModel|BaseCollection|array|false $data;
 
-    public function __construct(int $status, array $errors = [], bool|array $data = false)
+    public function __construct(int $status, array $errors = [], BaseModel|BaseCollection|array|false $data = false)
     {
         $this->status = $status;
         $this->errors = $errors;
@@ -21,8 +21,10 @@ abstract class APIResponse implements Response {
 
     public function toJSON(): string
     {
-        if ($this->data) {
+        if ($this->data && !is_array($this->data)) {
             return json_encode($this->data->toArray());
+        } else if($this->data && is_array($this->data)) {
+            return json_encode($this->data);
         } else {
             return json_encode($this->errors);
         }
