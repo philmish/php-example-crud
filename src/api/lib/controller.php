@@ -12,7 +12,10 @@ abstract class Controller {
         $this->db = $db;
     }
 
-    protected function validate(array $data, array $rules): array {
+    protected function validate(?array $data, array $rules): array {
+        if (!$data) {
+            return ["Missing input"];
+        }
         $validator = new Validator($rules);
         $result = $validator->run($data);
         return $result;
