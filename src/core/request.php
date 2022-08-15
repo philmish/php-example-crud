@@ -2,6 +2,8 @@
 
 namespace mvcex\core;
 
+use Closure;
+
 interface Request {
-    public function toQuery();
+    public function toQuery(): Closure;
 }

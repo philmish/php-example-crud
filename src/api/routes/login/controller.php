@@ -4,6 +4,7 @@ namespace mvcex\api\routes;
 
 use Exception;
 use mvcex\api\lib\Controller;
+use mvcex\api\lib\Validator;
 use mvcex\core\Query;
 
 final class LoginController extends Controller {
@@ -13,26 +14,33 @@ final class LoginController extends Controller {
        return new self(DB::fromEnv()); 
     }
 
-    protected function parseRequest(): LoginRequest {
-        $data = file_get_contents('php://input');
-        $decoded = json_decode($data, true);
+    protected function parseRequest(array $decoded): LoginRequest {
+        /*
         if (!is_array($decoded)) {
             throw new Exception("Missing input");
         }
         if (!array_key_exists("email", $decoded) || !array_key_exists("password", $decoded)) {
             throw new Exception("Missing data."); 
         }
+         */
         return new LoginRequest($decoded["email"], $decoded["password"]);
     }
 
     public function execute(): LoginResponse
     {
-        try {
-            $request = $this->parseRequest();
-            $query = Query::fromRequest($request);
-        } catch (Exception $e) {
-            return new LoginResponse(400, [$e->getMessage()]);
+        $rules = [
+            "email" => "required",
+            "password" => "required"
+        ];
+        $data = file_get_contents('php://input');
+        $decoded = json_decode($data, true);
+        $errors = $this->validate($decoded, $rules);
+        if (!empty($errors)) {
+            return new LoginResponse(400, $errors);
         }
+        $request = $this->parseRequest($decoded);
+        $query = Query::fromRequest($request);
+
         try {
             $res = $this->db->executeQuery($query);
             if (!array_key_exists("name", $res) || (!array_key_exists("password", $res))) {
