@@ -4,7 +4,6 @@ use PHPUnit\Framework\TestCase;
 use mvcex\api\lib\Validator;
 
 final class TestValidator extends TestCase {
-
     /**
      * @covers mvcex\api\lib\Validator
      */
@@ -16,5 +15,17 @@ final class TestValidator extends TestCase {
         $validator = new Validator($rules);
         $result = $validator->run($data);
         $this->assertEmpty($result);
+    }
+    /**
+     * @covers mvcex\api\lib\Validator
+     */
+    public function testRequiredFilterFailing(): void {
+        $rules = [
+            "test" => "required"
+        ];
+        $data = ["notTest" => "test"];
+        $validator = new Validator($rules);
+        $result = $validator->run($data);
+        $this->assertFalse(empty($result));
     }
 }

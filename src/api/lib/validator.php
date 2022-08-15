@@ -2,34 +2,7 @@
 
 namespace mvcex\api\lib;
 
-abstract class Filter {
-    protected array $errors;
-    protected array $args;
-
-    public function __construct(array $args = [])
-    {
-        $this->args = $args;
-    }
-
-    abstract public function runFilter(array $data, array $errors): array;
-}
-
-final class Required extends Filter {
-    private function keyExists(array $data, array $keys)
-    {
-        foreach($keys as $key) {
-            if (!key_exists($key, $data)) {
-                array_push($this->errors, "$key is required.");
-            }
-        }
-    }
-    public function runFilter(array $data, array $errors): array
-    {
-        $this->keyExists($data, $this->args);
-        return $this->errors;
-    }
-
-}
+use mvcex\api\lib\Filter;
 
 final class Validator {
     private array $rules;
@@ -39,7 +12,7 @@ final class Validator {
        $this->rules = $rules; 
     }
 
-    private function parseRule(string $rule, string $mapKey, array $map): void
+    private function parseRule(string $rule, string $mapKey, array &$map): void
     {
         $map[$mapKey] = [];
         $parts = explode("|", $rule);
