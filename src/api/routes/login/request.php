@@ -4,7 +4,6 @@ namespace mvcex\api\routes;
 
 use PDO;
 use Closure;
-use mvcex\api\lib\Validator;
 use \mvcex\core\Request;
 
 final class LoginRequest implements Request {

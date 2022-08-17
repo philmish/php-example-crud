@@ -4,7 +4,6 @@ namespace mvcex\api\routes;
 
 use Exception;
 use mvcex\api\lib\Controller;
-use mvcex\api\lib\Validator;
 use mvcex\core\Query;
 
 final class LoginController extends Controller {
@@ -15,14 +14,6 @@ final class LoginController extends Controller {
     }
 
     protected function parseRequest(array $decoded): LoginRequest {
-        /*
-        if (!is_array($decoded)) {
-            throw new Exception("Missing input");
-        }
-        if (!array_key_exists("email", $decoded) || !array_key_exists("password", $decoded)) {
-            throw new Exception("Missing data."); 
-        }
-         */
         return new LoginRequest($decoded["email"], $decoded["password"]);
     }
 
