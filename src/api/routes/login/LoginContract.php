@@ -4,6 +4,8 @@ namespace mvcex\api\routes;
 
 use Exception;
 use mvcex\api\lib\RouteContract;
+use mvcex\api\services\LoginController;
+
 
 final class LoginContract extends RouteContract {
     protected function POST(): void {

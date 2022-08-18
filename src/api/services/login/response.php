@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace mvcex\api\routes;
+namespace mvcex\api\services;
 use mvcex\api\lib\APIResponse;
 
 final class LoginResponse extends APIResponse {
