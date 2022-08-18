@@ -4,13 +4,14 @@ namespace mvcex\api\routes;
 
 use Exception;
 use mvcex\api\lib\Controller;
+use mvcex\api\lib\DBConnector;
 use mvcex\core\Query;
 
 final class LoginController extends Controller {
 
     static public function fromEnv(): self
     {
-       return new self(DB::fromEnv()); 
+       return new self(DBConnector::fromEnv()); 
     }
 
     protected function parseRequest(array $decoded): LoginRequest {
