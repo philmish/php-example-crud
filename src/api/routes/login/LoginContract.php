@@ -3,11 +3,13 @@
 namespace mvcex\api\routes;
 
 use Exception;
-use mvcex\api\lib\RouteContract;
+use mvcex\core\RouteContract;
 use mvcex\api\services\LoginController;
 
-
 final class LoginContract extends RouteContract {
+    /**
+     * Route contract handling authetication
+     */
     protected function POST(): void {
         try {
             $controller = LoginController::fromEnv();

@@ -2,16 +2,23 @@
 
 namespace mvcex\api\lib;
 
-use mvcex\api\lib\BaseCollection;
-use mvcex\api\lib\BaseModel;
 use mvcex\core\Response;
+use mvcex\core\Model;
 
 abstract class APIResponse implements Response {
+    /**
+     * Serializes and sends response data.
+     * TODO: remove array as type from data after refactor
+     *
+     * @param int $status HTTP statuscode send with the response  
+     * @param array<string> $errors  Errors encountered while executing previous operations
+     * @param Model|ModelCollection|array|false $data Requested Data
+     */
     protected int $status;
     protected array $errors;
-    protected BaseModel|BaseCollection|array|false $data;
+    protected Model|ModelCollection|array|false $data;
 
-    public function __construct(int $status, array $errors = [], BaseModel|BaseCollection|array|false $data = false)
+    public function __construct(int $status, array $errors = [], Model|ModelCollection|array|false $data = false)
     {
         $this->status = $status;
         $this->errors = $errors;
@@ -34,6 +41,4 @@ abstract class APIResponse implements Response {
     {
         http_response_code($this->status);
     }
-
-    abstract static public function fromQueryResult(array $result, ?string ...$args): self;
 }

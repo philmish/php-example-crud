@@ -7,9 +7,9 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
+                'mvcex\\api\\lib\\apimodel' => '/api/lib/model.php',
                 'mvcex\\api\\lib\\apiresponse' => '/api/lib/response.php',
                 'mvcex\\api\\lib\\basecollection' => '/api/lib/model.php',
-                'mvcex\\api\\lib\\basemodel' => '/api/lib/model.php',
                 'mvcex\\api\\lib\\controller' => '/api/lib/controller.php',
                 'mvcex\\api\\lib\\dbconnector' => '/api/lib/database.php',
                 'mvcex\\api\\lib\\filter' => '/api/lib/filter.php',
@@ -22,6 +22,7 @@ spl_autoload_register(
                 'mvcex\\api\\services\\loginrequest' => '/api/services/login/request.php',
                 'mvcex\\api\\services\\loginresponse' => '/api/services/login/response.php',
                 'mvcex\\core\\database' => '/core/database.php',
+                'mvcex\\core\\model' => '/core/model.php',
                 'mvcex\\core\\query' => '/core/query.php',
                 'mvcex\\core\\request' => '/core/request.php',
                 'mvcex\\core\\response' => '/core/response.php'
