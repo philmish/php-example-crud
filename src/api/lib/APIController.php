@@ -4,9 +4,15 @@ namespace mvcex\api\lib;
 
 use mvcex\api\lib\validation\Validator;
 use mvcex\api\lib\APIResponse;
-use mvcex\core\Request;
 
-abstract class Controller {
+abstract class APIController {
+    /**
+     * Validate a list of rules on an array of data.
+     *
+     * @param array<string, mixed>|array<int, mixed>|null $data Data to run the validator on 
+     * @param array<string, string> $rules Rules to validate
+     * @return array<string> $result A list of encountered errors
+     */
     protected function validate(?array $data, array $rules): array {
         if (!$data) {
             return ["Missing input"];
@@ -17,6 +23,5 @@ abstract class Controller {
     }
 
     abstract static public function fromEnv():self;
-    abstract protected function parseRequest(array $decoded): Request;
     abstract public function execute(): APIResponse;
 }
