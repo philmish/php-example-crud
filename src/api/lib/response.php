@@ -25,20 +25,19 @@ abstract class APIResponse implements Response {
         $this->data = $data;
         
     }
-
-    public function toJSON(): string
-    {
-        if ($this->data && !is_array($this->data)) {
-            return json_encode($this->data->toArray());
-        } else if($this->data && is_array($this->data)) {
-            return json_encode($this->data);
-        } else {
-            return json_encode($this->errors);
-        }
-    }
-
-    public function sendStatus(): void
-    {
+    
+    /**
+     * Sends the status code and either the serialized errors or data.
+     */
+    public function send(): void {
         http_response_code($this->status);
+        if (!$this->data) {
+            echo json_encode($this->errors);
+        } elseif (is_array($this->data) && !empty($this->data)) {
+            echo json_encode($this->data);
+        } else {
+            echo $this->data->toJSON();
+        }
+        
     }
 }
