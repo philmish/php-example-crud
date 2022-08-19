@@ -40,6 +40,11 @@ final class Validator {
         }
     } 
 
+    /**
+     * Parses all rules.
+     *
+     * @return array<string, array<int, Filter>> $filterMap Mapping from Keys to related Filter
+     */
     private function parseRules(): array
     {
         $filterMap = [];
@@ -50,6 +55,12 @@ final class Validator {
         return $filterMap;
     }
 
+    /**
+     * Executes the array of filters parsed from the rules on a provieded array. 
+     *
+     * @param array<string, mixed> $data Data to validate
+     * @return array<string> $errors Errors encountered while running filters
+     */
     public function run(array $data): array {
         $filterMap = $this->parseRules();
         $errors = [];

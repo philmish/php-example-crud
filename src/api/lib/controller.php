@@ -2,16 +2,11 @@
 
 namespace mvcex\api\lib;
 
+use mvcex\api\lib\validation\Validator;
 use mvcex\api\lib\APIResponse;
 use mvcex\core\Request;
 
 abstract class Controller {
-    protected DBConnector $db;
-
-    protected function __construct(DBConnector $db) {
-        $this->db = $db;
-    }
-
     protected function validate(?array $data, array $rules): array {
         if (!$data) {
             return ["Missing input"];
