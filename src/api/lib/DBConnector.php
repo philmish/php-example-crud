@@ -3,8 +3,8 @@
 namespace mvcex\api\lib;
 
 use mvcex\core\Database;
-use mvcex\core\Query;
 use PDO;
+use Exception;
 
 final class DBConnector implements Database {
     protected PDO $pdo;
@@ -12,12 +12,17 @@ final class DBConnector implements Database {
     public function __construct(string $dsn, string $user, string $pass)
     {
        $this->pdo = new PDO($dsn, $user, $pass);
-       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION, PDO::FETCH_ASSOC);
     }
 
-    public function executeQuery(Query $query): array {
-        $res = $query->execute($this->pdo);
-        return $res;
+    public function row(string $stmt, ?array $args): array {
+        $prep = $this->pdo->prepare($stmt, $args);
+        return $prep->fetch();
+    }
+
+    public function rows(string $stmt, ?array $args): array {
+        $prep = $this->pdo->prepare($stmt, $args);
+        return $prep->fetchAll();
     }
 
     static public function fromEnv(): self {

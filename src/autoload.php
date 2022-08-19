@@ -7,25 +7,25 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'mvcex\\api\\lib\\apimodel' => '/api/lib/model.php',
                 'mvcex\\api\\lib\\apiresponse' => '/api/lib/response.php',
-                'mvcex\\api\\lib\\basecollection' => '/api/lib/model.php',
                 'mvcex\\api\\lib\\controller' => '/api/lib/controller.php',
-                'mvcex\\api\\lib\\dbconnector' => '/api/lib/database.php',
-                'mvcex\\api\\lib\\filter' => '/api/lib/filter.php',
-                'mvcex\\api\\lib\\required' => '/api/lib/filter.php',
+                'mvcex\\api\\lib\\dbconnector' => '/api/lib/DBConnector.php',
+                'mvcex\\api\\lib\\filter' => '/api/lib/validation/filter.php',
+                'mvcex\\api\\lib\\modelcollection' => '/api/lib/ModelCollection.php',
+                'mvcex\\api\\lib\\required' => '/api/lib/validation/filter.php',
                 'mvcex\\api\\lib\\routecontract' => '/api/lib/route.php',
-                'mvcex\\api\\lib\\validator' => '/api/lib/validator.php',
+                'mvcex\\api\\lib\\validator' => '/api/lib/validation/Validator.php',
                 'mvcex\\api\\routes\\logincontract' => '/api/routes/login/LoginContract.php',
                 'mvcex\\api\\routes\\notfoundcontract' => '/api/routes/errors/NotFoundContract.php',
                 'mvcex\\api\\services\\logincontroller' => '/api/services/login/controller.php',
                 'mvcex\\api\\services\\loginrequest' => '/api/services/login/request.php',
                 'mvcex\\api\\services\\loginresponse' => '/api/services/login/response.php',
-                'mvcex\\core\\database' => '/core/database.php',
+                'mvcex\\core\\database' => '/core/Database.php',
                 'mvcex\\core\\model' => '/core/model.php',
                 'mvcex\\core\\query' => '/core/query.php',
                 'mvcex\\core\\request' => '/core/request.php',
-                'mvcex\\core\\response' => '/core/response.php'
+                'mvcex\\core\\response' => '/core/Response.php',
+                'mvcex\\core\\routecontract' => '/core/RouteContract.php'
             );
         }
         $cn = strtolower($class);
