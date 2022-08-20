@@ -7,23 +7,21 @@ use mvcex\core\Database;
 use mvcex\core\Model;
 
 abstract class APIModel implements Model {
-    protected Database $db;
+    static public function Create(Database $db): self|Exception {
+        return new Exception("Not implemented");
+    }
 
-    protected function __construct(Database $db)
-    {
-        $this->db = $db;
-    }
-    static public function Create(): self|Exception {
+    static public function Read(Database $db): self|Exception {
         return new Exception("Not implemented");
     }
-    static public function Read(): self|Exception {
+
+    static public function Update(Database $db): self|Exception {
         return new Exception("Not implemented");
     }
-    static public function Update(): self|Exception {
+
+    static public function Del(Database $db): self|Exception {
         return new Exception("Not implemented");
     }
-    static public function Del(): self|Exception {
-        return new Exception("Not implemented");
-    }
+
     abstract public function toResponse(): APIResponse;
 }

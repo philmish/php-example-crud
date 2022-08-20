@@ -4,7 +4,7 @@ namespace mvcex\api\lib;
 
 use mvcex\core\Response;
 
-abstract class APIResponse implements Response {
+final class APIResponse implements Response {
     /**
      * Serializes and sends response data.
      *
@@ -16,12 +16,10 @@ abstract class APIResponse implements Response {
     protected array $errors;
     protected array|false $data;
 
-    public function __construct(int $status, array $errors = [], array|false $data = false)
-    {
+    public function __construct(int $status, array $errors = [], array|false $data = false) {
         $this->status = $status;
         $this->errors = $errors;
         $this->data = $data;
-        
     }
     
     /**
@@ -35,6 +33,5 @@ abstract class APIResponse implements Response {
         } else {
             echo json_encode($this->data);
         }
-        
     }
 }

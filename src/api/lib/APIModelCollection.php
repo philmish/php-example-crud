@@ -9,32 +9,24 @@ use mvcex\api\lib\APIResponse;
 
 
 abstract class APIModelCollection implements Model {
-    protected Database $db;
     protected array $items;
 
-    /**
-     * Basic Model collection implementation inherited by final service models.
-     *
-     * @param Database  $db Database interface to use for querying data.
-     */
-    protected function __construct(Database $db)
-    {
-        $this->db = $db;
-        $this->items = [];
+    static public function Create(Database $db): self|Exception {
+        return new Exception("Not implemented");
+    }
+    
+    static public function Read(Database $db): self|Exception {
+        return new Exception("Not implemented");
     }
 
-    static public function Create(): self|Exception {
+    static public function Update(Database $db): self|Exception {
         return new Exception("Not implemented");
     }
-    static public function Read(): self|Exception {
+
+    static public function Del(Database $db): self|Exception {
         return new Exception("Not implemented");
     }
-    static public function Update(): self|Exception {
-        return new Exception("Not implemented");
-    }
-    static public function Del(): self|Exception {
-        return new Exception("Not implemented");
-    }
+
     abstract public function toResponse(): APIResponse;
 
 }

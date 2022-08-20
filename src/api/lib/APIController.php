@@ -4,8 +4,14 @@ namespace mvcex\api\lib;
 
 use mvcex\api\lib\validation\Validator;
 use mvcex\api\lib\APIResponse;
+use mvcex\core\Database;
 
 abstract class APIController {
+    protected Database $db;
+
+    protected function __construct(Database $db) {
+        $this->db = $db;
+    }
     /**
      * Validate a list of rules on an array of data.
      *

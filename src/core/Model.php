@@ -6,10 +6,10 @@ use Exception;
 use mvcex\core\Response;
 
 interface Model {
-    static public function Create(): self|Exception;
-    static public function Read(): self|Exception;
-    static public function Update(): self|Exception;
-    static public function Del(): self|Exception;
+    static public function Create(Database $db): self|Exception;
+    static public function Read(Database $db): self|Exception;
+    static public function Update(Database $db): self|Exception;
+    static public function Del(Database $db): self|Exception;
     public function toResponse(): Response;
 }
 
