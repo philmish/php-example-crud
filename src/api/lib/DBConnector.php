@@ -12,17 +12,19 @@ final class DBConnector implements Database {
     public function __construct(string $dsn, string $user, string $pass)
     {
        $this->pdo = new PDO($dsn, $user, $pass);
-       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION, PDO::FETCH_ASSOC);
+       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function row(string $stmt, ?array $args): array {
-        $prep = $this->pdo->prepare($stmt, $args);
-        return $prep->fetch();
+    public function row(string $stmt, ?array $args): array|false {
+        $prep = $this->pdo->prepare($stmt);
+        $prep->execute($args);
+        return $prep->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function rows(string $stmt, ?array $args): array {
-        $prep = $this->pdo->prepare($stmt, $args);
-        return $prep->fetchAll();
+    public function rows(string $stmt, ?array $args): array|false {
+        $prep = $this->pdo->prepare($stmt);
+        $prep->execute($args);
+        return $prep->fetchAll(PDO::FETCH_ASSOC);
     }
 
     static public function fromEnv(): self {
