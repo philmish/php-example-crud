@@ -11,19 +11,19 @@ use mvcex\api\lib\APIResponse;
 abstract class APIModelCollection implements Model {
     protected array $items;
 
-    static public function Create(Database $db): self|Exception {
+    static public function Create(Database $db, ?array $data): self|Exception {
         return new Exception("Not implemented");
     }
     
-    static public function Read(Database $db): self|Exception {
+    static public function Read(Database $db, ?array $data): self|Exception {
         return new Exception("Not implemented");
     }
 
-    static public function Update(Database $db): self|Exception {
+    static public function Update(Database $db, ?array $data): self|Exception {
         return new Exception("Not implemented");
     }
 
-    static public function Del(Database $db): self|Exception {
+    static public function Del(Database $db, ?array $data): self|Exception {
         return new Exception("Not implemented");
     }
 
