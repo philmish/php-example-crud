@@ -29,5 +29,5 @@ abstract class APIController {
     }
 
     abstract static public function fromEnv():self;
-    abstract public function execute(): APIResponse;
+    abstract public function execute(?Command $cmd): APIResponse;
 }
