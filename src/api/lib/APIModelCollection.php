@@ -12,6 +12,11 @@ abstract class APIModelCollection implements Model {
     protected Database $db;
     protected array $items;
 
+    /**
+     * Basic Model collection implementation inherited by final service models.
+     *
+     * @param Database  $db Database interface to use for querying data.
+     */
     protected function __construct(Database $db)
     {
         $this->db = $db;
