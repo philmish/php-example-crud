@@ -2,13 +2,14 @@
 
 namespace mvcex\core;
 
+use Exception;
 use mvcex\core\Response;
 
 interface Model {
-    public function Create(): Response;
-    public function Read(): Response;
-    public function Update(): Response;
-    public function Del(): Response;
-    public function toJSON(): string|false;
+    static public function Create(): self|Exception;
+    static public function Read(): self|Exception;
+    static public function Update(): self|Exception;
+    static public function Del(): self|Exception;
+    public function toResponse(): Response;
 }
 
