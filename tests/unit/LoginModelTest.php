@@ -21,4 +21,18 @@ final class ModelTest extends TestCase {
         $model = LoginModel::Read($dbStub, $data);
         $this->assertFalse($model instanceof Exception);
     }
+
+    public function testtoReadFailure() {
+        $dbStub = $this->getMockBuilder(Database::class)
+                       ->disableOriginalConstructor()
+                       ->DisableOriginalClone()
+                       ->disableArgumentCloning()
+                       ->disallowMockingUnknownTypes()
+                       ->getMock();
+        $dbStub->method('row')
+               ->willReturn(false);
+        $data = ["email" => "test@mail.com", "password" => "pass"];
+        $model = LoginModel::Read($dbStub, $data);
+        $this->assertTrue($model instanceof Exception);
+    }
 }
