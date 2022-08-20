@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace mvcex\api\lib;
+namespace mvcex\api\lib\validation;
 
 use PHPUnit\Framework\TestCase;
-use mvcex\api\lib\Filter;
+use mvcex\api\lib\validation\Filter;
 
 final class TestFilter extends TestCase {
     /**
