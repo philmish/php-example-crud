@@ -4,7 +4,8 @@ namespace mvcex\api\routes;
 
 use Exception;
 use mvcex\core\RouteContract;
-use mvcex\api\services\LoginController;
+use mvcex\api\lib\Command;
+use mvcex\api\services\auth\AuthController;
 
 final class LoginContract extends RouteContract {
     /**
@@ -12,10 +13,9 @@ final class LoginContract extends RouteContract {
      */
     protected function POST(): void {
         try {
-            $controller = LoginController::fromEnv();
-            $result = $controller->execute();
-            echo $result->toJSON();
-            $result->sendStatus();
+            $controller = AuthController::fromEnv();
+            $response = $controller->execute(Command::LOGIN);
+            $response->send();
         } catch( Exception $e) {
             echo json_encode(["error" => $e->getMessage()]);
             http_response_code(503);
