@@ -1,13 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace mvcex\api\lib\validation;
-
 use PHPUnit\Framework\TestCase;
-use mvcex\api\lib\validation\Filter;
+use mvcex\api\lib\validation\Required;
 
 final class TestFilter extends TestCase {
     /**
-     * @covers mvcex\api\lib\Validator
+     * @covers mvcex\api\lib\validation\Required
      */
     public function testRequiredFilter(): void {
         $filter = new Required(["test"]);
