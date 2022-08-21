@@ -20,10 +20,10 @@ spl_autoload_register(
                 'mvcex\\api\\routes\\notfoundcontract' => '/api/routes/errors/NotFoundContract.php',
                 'mvcex\\api\\services\\auth\\authcontroller' => '/api/services/auth/AuthController.php',
                 'mvcex\\api\\services\\auth\\loginmodel' => '/api/services/auth/LoginModel.php',
+                'mvcex\\api\\services\\auth\\notescontroller' => '/api/services/notes/NotesController.php',
+                'mvcex\\api\\services\\notes\\notemodel' => '/api/services/NoteModel.php',
                 'mvcex\\core\\database' => '/core/Database.php',
                 'mvcex\\core\\model' => '/core/Model.php',
-                'mvcex\\core\\query' => '/core/query.php',
-                'mvcex\\core\\request' => '/core/request.php',
                 'mvcex\\core\\response' => '/core/Response.php',
                 'mvcex\\core\\routecontract' => '/core/RouteContract.php'
             );

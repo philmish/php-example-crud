@@ -12,7 +12,7 @@ final class APIResponse implements Response {
      * @param array<string> $errors  Errors encountered while executing previous operations
      * @param array|false $data Requested Data
      */
-    protected int $status;
+    public int $status;
     protected array $errors;
     protected array|false $data;
 
