@@ -5,21 +5,36 @@ use mvcex\api\services\auth\LoginModel;
 use PHPUnit\Framework\TestCase;
 
 final class ModelTest extends TestCase {
+    private Database $successStub;
+
+    protected function setUp():void {
+        $this->successStub = $this->getMockBuilder(Database::class)
+                                  ->disableOriginalConstructor()
+                                  ->DisableOriginalClone()
+                                  ->disableArgumentCloning()
+                                  ->disallowMockingUnknownTypes()
+                                  ->getMock();
+        $this->successStub
+             ->method('row')
+             ->willReturn(["password" => "$1\$jwGbpR.A\$zYCjQtuXUwR.aauJuU8He0"]);
+        
+        $this->failureStub = $this->getMockBuilder(Database::class)
+                                  ->disableOriginalConstructor()
+                                  ->DisableOriginalClone()
+                                  ->disableArgumentCloning()
+                                  ->disallowMockingUnknownTypes()
+                                  ->getMock();
+        $this->failureStub
+             ->method('row')
+             ->willReturn(false);
+    }
 
     /**
      * @covers mvcex\api\services\auth\LoginModel
      */
     public function testReadSuccess() {
-        $dbstub= $this->getMockBuilder(Database::class)
-                       ->disableOriginalConstructor()
-                       ->DisableOriginalClone()
-                       ->disableArgumentCloning()
-                       ->disallowMockingUnknownTypes()
-                       ->getMock();
-        $dbstub->method('row')
-               ->willReturn(["password" => "$1\$jwGbpR.A\$zYCjQtuXUwR.aauJuU8He0"]);
         $data = ["email" => "test@mail.com", "password" => "pass"];
-        $model = LoginModel::Read($dbstub, $data);
+        $model = LoginModel::Read($this->successStub, $data);
         $this->assertFalse($model instanceof Exception);
     }
 
@@ -27,16 +42,8 @@ final class ModelTest extends TestCase {
      * @covers mvcex\api\services\auth\LoginModel
      */
     public function testReadFailure() {
-        $dbstub= $this->getMockBuilder(Database::class)
-                       ->disableOriginalConstructor()
-                       ->DisableOriginalClone()
-                       ->disableArgumentCloning()
-                       ->disallowMockingUnknownTypes()
-                       ->getMock();
-        $dbstub->method('row')
-               ->willReturn(false);
         $data = ["email" => "test@mail.com", "password" => "pass"];
-        $model = LoginModel::Read($dbstub, $data);
+        $model = LoginModel::Read($this->failureStub, $data);
         $this->assertTrue($model instanceof Exception);
     }
 
@@ -44,16 +51,8 @@ final class ModelTest extends TestCase {
      * @covers mvcex\api\services\auth\LoginModel
      */
     public function testtoResponse() {
-        $dbstub= $this->getMockBuilder(Database::class)
-                       ->disableOriginalConstructor()
-                       ->DisableOriginalClone()
-                       ->disableArgumentCloning()
-                       ->disallowMockingUnknownTypes()
-                       ->getMock();
-        $dbstub->method('row')
-               ->willReturn(["password" => "$1\$jwGbpR.A\$zYCjQtuXUwR.aauJuU8He0"]);
         $data = ["email" => "test@mail.com", "password" => "Password123"];
-        $model = LoginModel::Read($dbstub, $data);
+        $model = LoginModel::Read($this->successStub, $data);
         $this->assertFalse($model instanceof Exception);
         $response = $model->toResponse();
         $this->assertEquals($response->status, 200);
