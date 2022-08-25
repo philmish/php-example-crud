@@ -10,4 +10,4 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           memory_limit: 125M
-          bootstrap: src/autoload.php
+          bootstrap: ./src/autoload.php
