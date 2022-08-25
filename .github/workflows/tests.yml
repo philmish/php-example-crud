@@ -1,0 +1,10 @@
+name: unit_tests
+
+on: [push]
+
+jobs:
+  unit-tests:
+    - name: PHPUnit tests
+      uses: php-actions/phpunit@v3
+      with:
+        memory_limit: 125M
