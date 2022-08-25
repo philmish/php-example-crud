@@ -11,4 +11,3 @@ jobs:
         with:
           memory_limit: 125M
           bootstrap: src/autoload.php
-          configuration: phpunit.xml
