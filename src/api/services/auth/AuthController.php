@@ -6,16 +6,10 @@ use Exception;
 use mvcex\api\lib\APIController;
 use mvcex\api\lib\APIResponse;
 use mvcex\api\lib\Command;
-use mvcex\api\lib\DBConnector;
 
 final class AuthController extends APIController {
 
-    static public function fromEnv(): self
-    {
-       return new self(DBConnector::fromEnv()); 
-    }
-
-    protected function parseLogin(): APIResponse {
+    private function parseLogin(): APIResponse {
         $rules = [
             "email" => "required",
             "password" => "required"
