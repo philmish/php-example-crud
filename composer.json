@@ -1,4 +1,6 @@
 {
+    "name": "example-crud",
+    "description": "A simple CRUD API written for learning purposes",
     "require-dev": {
         "phpunit/phpunit": "^9"
     },
