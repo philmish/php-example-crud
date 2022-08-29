@@ -15,11 +15,11 @@ final class NotesCollection extends APIModelCollection {
     }
 
     public static function Read(Database $db, ?array $requestData): self| Exception {
-        if (!is_array($requestData) || !array_key_exists("author_id", $requestData)) {
+        if (!is_array($requestData) || !array_key_exists("topic_id", $requestData)) {
             return new Exception("Invalid input");
         }
-        $stmt = "SELECT id, created, content, author_id FROM Notes WHERE author_id = ?";
-        $args = [$requestData["author_id"]];
+        $stmt = "SELECT id, created, content, topic_id FROM Notes WHERE topic_id = ?";
+        $args = [$requestData["topic_id"]];
         $collection = $db->rows($stmt, $args);
         if (!$collection) {
             return new Exception("Notess not found");

@@ -7,4 +7,5 @@ enum Command {
     case LOGOUT;
     case FETCH_NOTE;
     case FETCH_NOTES;
+    case CREATE_NOTE;
 }
