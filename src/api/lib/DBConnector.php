@@ -41,6 +41,15 @@ final class DBConnector implements Database {
         }
     }
 
+    public function insertOne(string $stmt, ?array $args): string|false {
+        $inserted = $this->pdo->prepare($stmt)->execute($args);
+        if (!$inserted) {
+            return false;
+        }
+        return $this->pdo->lastInsertId();
+        
+    }
+
     static public function fromEnv(): self {
         $dsn = getenv("DB_ADDR");
         $user = getenv("DB_USER");

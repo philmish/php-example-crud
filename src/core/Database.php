@@ -6,4 +6,5 @@ interface Database {
     public function row(string $stmt, ?array $args): array|false;
     public function rows(string $stmt, ?array $args): array|false;
     public function run(string $stmt, ?array $args): bool;
+    public function insertOne(string $stmt, ?array $args): string|false;
 }
