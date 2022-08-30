@@ -18,7 +18,7 @@ final class NotesCollectionTest extends TestCase {
                                   ->getMock();
         $this->readSuccessStub
              ->method('rows')
-             ->willReturn([["content" => "This is a test Note", "created" => "19.08.2022", "id" => 1, "author_id" => 23], ["content" => "second test note", "created" => "20.08.2022", "id" => 2, "author_id" => 23]]);
+             ->willReturn([["content" => "This is a test Note", "created" => "19.08.2022", "id" => 1, "topic_id" => 23], ["content" => "second test note", "created" => "20.08.2022", "id" => 2, "topic_id" => 23]]);
         $this->failureStub = $this->getMockBuilder(Database::class)
                                   ->disableOriginalConstructor()
                                   ->DisableOriginalClone()
@@ -34,7 +34,7 @@ final class NotesCollectionTest extends TestCase {
      * @covers mvcex\api\services\notes\NoteModel
      */
     public function testReadNoteSuccess() {
-        $data = ["author_id" => 23];
+        $data = ["topic_id" => 23];
         $model = NotesCollection::Read($this->readSuccessStub, $data);
         $this->assertFalse($model instanceof Exception);
     }
@@ -50,8 +50,8 @@ final class NotesCollectionTest extends TestCase {
         $nullInput = NotesCollection::Read($this->readSuccessStub, null);
         $this->assertTrue($nullInput instanceof Exception);
 
-        $noResultInput = ["author_id" => 24];
+        $noResultInput = ["topic_id" => 24];
         $noResult = NotesCollection::Read($this->failureStub, $noResultInput);
-        $this->assertTrue($incorrectInput instanceof Exception);
+        $this->assertTrue($noResult instanceof Exception);
     }
 }
