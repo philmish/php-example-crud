@@ -3,3 +3,4 @@
 db/
 vendor/
 .cache/
+.phplint-cache
