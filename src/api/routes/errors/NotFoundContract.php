@@ -2,7 +2,7 @@
 
 namespace mvcex\api\routes;
 
-use mvcex\api\lib\RouteContract;
+use mvcex\core\RouteContract;
 
 final class NotFoundContract extends RouteContract {
 

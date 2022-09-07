@@ -4,6 +4,7 @@ namespace mvcex\api\lib;
 
 use mvcex\api\lib\validation\Validator;
 use mvcex\api\lib\APIResponse;
+use mvcex\api\lib\exceptions\InvalidInputs;
 use mvcex\core\Database;
 
 abstract class APIController {
@@ -19,7 +20,7 @@ abstract class APIController {
      * @param array<string, string> $rules Rules to validate
      * @return array<string> $result A list of encountered errors
      */
-    protected function validate(?array $data, array $rules): array {
+    protected function validate(?array $data, array $rules): InvalidInputs|bool {
         if (!$data) {
             return ["Missing input"];
         }
@@ -28,9 +29,6 @@ abstract class APIController {
         return $result;
     }
 
-    static public function fromEnv(): self {
-       return new self(DBConnector::fromEnv()); 
-    }
-
+    abstract static public function fromEnv(): self;
     abstract public function execute(?Command $cmd): APIResponse;
 }

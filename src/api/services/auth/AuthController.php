@@ -6,6 +6,7 @@ use Exception;
 use mvcex\api\lib\APIController;
 use mvcex\api\lib\APIResponse;
 use mvcex\api\lib\Command;
+use mvcex\api\lib\DBConnector;
 use mvcex\api\lib\exceptions\ApiException;
 
 final class AuthController extends APIController {
@@ -23,6 +24,10 @@ final class AuthController extends APIController {
         }
         $model = LoginModel::Read($this->db, $decoded);
         return $model->toResponse();
+    }
+
+    public static function fromEnv(): self {
+        return new self(DBConnector::fromEnv());
     }
 
     public function execute(?Command $cmd): APIResponse {
