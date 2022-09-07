@@ -5,10 +5,12 @@ namespace mvcex\api\services\auth;
 use Exception;
 use mvcex\api\lib\APIModel;
 use mvcex\api\lib\APIResponse;
+use mvcex\api\lib\exceptions\ApiException;
+use mvcex\api\lib\exceptions\DBException;
+use mvcex\api\lib\exceptions\InvalidInputs;
 use mvcex\core\Database;
 
 final class LoginModel extends APIModel {
-    private string $email;
     private string $password;
     private string $hash;
 
@@ -18,14 +20,18 @@ final class LoginModel extends APIModel {
         $this->hash = $hash;
     }
 
-    static public function Read(Database $db, ?array $data): self|Exception {
+    static public function Read(Database $db, ?array $data): self|ApiException {
         if (!array_key_exists("password", $data) || !array_key_exists("email", $data)) {
             return new Exception("Can't parse provided data.");
         }
         $stmt = "SELECT password FROM Users WHERE email = ?";
-        $user = $db->row($stmt, [$data["email"]]);
-        if (!$user) {
-            return new Exception("Wrong creds");
+        try {
+            $user = $db->row($stmt, [$data["email"]]);
+            if (!$user) {
+                return new InvalidInputs("Invalid credentials");
+            }
+        } catch (Exception $e) {
+            return new DBException("Something went wrong while logging in.", null, $e);
         }
         return new self($data['email'], $data['password'], $user['password']);
     }

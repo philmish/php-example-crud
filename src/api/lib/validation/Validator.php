@@ -2,6 +2,8 @@
 
 namespace mvcex\api\lib\validation;
 
+use mvcex\api\lib\exceptions\InvalidInputs;
+
 final class Validator {
     /**
      * Data validator for running validation filters on an array.
@@ -51,7 +53,6 @@ final class Validator {
         foreach($this->rules as $key => $rulePattern) {
            $this->parseRule($rulePattern, $key, $filterMap); 
         }
-
         return $filterMap;
     }
 
@@ -61,7 +62,7 @@ final class Validator {
      * @param array<string, mixed> $data Data to validate
      * @return array<string> $errors Errors encountered while running filters
      */
-    public function run(array $data): array {
+    public function run(array $data): InvalidInputs|bool {
         $filterMap = $this->parseRules();
         $errors = [];
         foreach ($filterMap as $key => $filters) {
@@ -69,6 +70,9 @@ final class Validator {
                 $filter->runFilter($data, $errors);
             }
         }
-        return $errors;
+        if (count($errors) === 0) {
+            return true;
+        }
+        return new InvalidInputs("Invalid Inputs", $errors);
     }
 }

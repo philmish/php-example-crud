@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use mvcex\api\lib\exceptions\InvalidInputs;
 use PHPUnit\Framework\TestCase;
 use mvcex\api\lib\validation\Validator;
 
@@ -14,7 +15,7 @@ final class TestValidator extends TestCase {
         $data = ["test" => "test"];
         $validator = new Validator($rules);
         $result = $validator->run($data);
-        $this->assertEmpty($result);
+        $this->assertTrue($result);
     }
     /**
      * @covers mvcex\api\lib\Validator
@@ -26,6 +27,6 @@ final class TestValidator extends TestCase {
         $data = ["notTest" => "test"];
         $validator = new Validator($rules);
         $result = $validator->run($data);
-        $this->assertFalse(empty($result));
+        $this->assertTrue($result instanceof InvalidInputs);
     }
 }

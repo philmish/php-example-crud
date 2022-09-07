@@ -6,6 +6,7 @@ use Exception;
 use mvcex\api\lib\APIController;
 use mvcex\api\lib\APIResponse;
 use mvcex\api\lib\Command;
+use mvcex\api\lib\exceptions\ApiException;
 
 final class AuthController extends APIController {
 
@@ -17,13 +18,10 @@ final class AuthController extends APIController {
         $data = file_get_contents('php://input');
         $decoded = json_decode($data, true);
         $errors = $this->validate($decoded, $rules);
-        if (!empty($errors)) {
-            return new APIResponse(400, $errors);
+        if ($errors instanceof ApiException) {
+            return $errors->toResponse();
         }
         $model = LoginModel::Read($this->db, $decoded);
-        if ($model instanceof Exception) {
-            return new APIResponse(503, [$model->getMessage()]);
-        }
         return $model->toResponse();
     }
 
