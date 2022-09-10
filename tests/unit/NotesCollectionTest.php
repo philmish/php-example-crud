@@ -1,9 +1,11 @@
 <?php declare(strict_types=1);
 
-use mvcex\api\services\notes\NoteModel;
+use mvcex\api\lib\exceptions\ApiException;
 use mvcex\core\Database;
-use PHPUnit\Framework\TestCase;
+use mvcex\api\lib\exceptions\InvalidInputs;
+use mvcex\api\lib\exceptions\NotFound;
 use mvcex\api\services\notes\NotesCollection;
+use PHPUnit\Framework\TestCase;
 
 final class NotesCollectionTest extends TestCase {
     private Database $readSuccessStub;
@@ -18,7 +20,18 @@ final class NotesCollectionTest extends TestCase {
                                   ->getMock();
         $this->readSuccessStub
              ->method('rows')
-             ->willReturn([["content" => "This is a test Note", "created" => "19.08.2022", "id" => 1, "topic_id" => 23], ["content" => "second test note", "created" => "20.08.2022", "id" => 2, "topic_id" => 23]]);
+             ->willReturn([
+                 [
+                     "content" => "This is a test Note",
+                     "created" => "19.08.2022", "id" => 1,
+                     "topic_id" => 23
+                 ],
+                 [
+                     "content" => "second test note",
+                     "created" => "20.08.2022",
+                     "id" => 2, "topic_id" => 23
+                 ]
+             ]);
         $this->failureStub = $this->getMockBuilder(Database::class)
                                   ->disableOriginalConstructor()
                                   ->DisableOriginalClone()
@@ -36,7 +49,9 @@ final class NotesCollectionTest extends TestCase {
     public function testReadNoteSuccess() {
         $data = ["topic_id" => 23];
         $model = NotesCollection::Read($this->readSuccessStub, $data);
-        $this->assertFalse($model instanceof Exception);
+        $this->assertFalse($model instanceof ApiException);
+        $response = $model->toResponse();
+        $this->assertTrue($response->status === 200);
     }
 
     /**
@@ -45,13 +60,13 @@ final class NotesCollectionTest extends TestCase {
     public function testReadNoteFailure() {
         $incorecct = ["not_author_Id" => "test"];
         $incorrectInput = NotesCollection::Read($this->readSuccessStub, $incorecct);
-        $this->assertTrue($incorrectInput instanceof Exception);
+        $this->assertTrue($incorrectInput instanceof InvalidInputs);
 
         $nullInput = NotesCollection::Read($this->readSuccessStub, null);
-        $this->assertTrue($nullInput instanceof Exception);
+        $this->assertTrue($nullInput instanceof InvalidInputs);
 
         $noResultInput = ["topic_id" => 24];
         $noResult = NotesCollection::Read($this->failureStub, $noResultInput);
-        $this->assertTrue($noResult instanceof Exception);
+        $this->assertTrue($noResult instanceof NotFound);
     }
 }

@@ -4,10 +4,12 @@ use mvcex\api\lib\exceptions\InvalidInputs;
 use PHPUnit\Framework\TestCase;
 use mvcex\api\lib\validation\Validator;
 
+
+/**
+ * @covers mvcex\api\lib\Validator
+ */
 final class TestValidator extends TestCase {
-    /**
-     * @covers mvcex\api\lib\Validator
-     */
+
     public function testRequiredFilter(): void {
         $rules = [
             "test" => "required"
@@ -17,9 +19,7 @@ final class TestValidator extends TestCase {
         $result = $validator->run($data);
         $this->assertTrue($result);
     }
-    /**
-     * @covers mvcex\api\lib\Validator
-     */
+
     public function testRequiredFilterFailing(): void {
         $rules = [
             "test" => "required"
@@ -28,5 +28,15 @@ final class TestValidator extends TestCase {
         $validator = new Validator($rules);
         $result = $validator->run($data);
         $this->assertTrue($result instanceof InvalidInputs);
+    }
+
+    public function testIsArrayFilterSuccess(): void {
+        $data = [
+            "test" => ["test" => "test"],
+        ];
+        $rules = ["test" => "array",];
+        $validator = new Validator($rules);
+        $result = $validator->run($data);
+        $this->assertFalse($result instanceof InvalidInputs);
     }
 }
