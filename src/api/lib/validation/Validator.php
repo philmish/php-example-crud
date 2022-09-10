@@ -36,6 +36,8 @@ final class Validator {
             case 'required':
                 array_push($map[$mapKey], new Required([$mapKey]));
                 break;
+            case 'array':
+                array_push($map[$mapKey], new IsArray([$mapKey]));
             default:
                 break;
             }
