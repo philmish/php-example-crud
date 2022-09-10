@@ -2,7 +2,6 @@
 
 namespace mvcex\api\services\auth;
 
-use Exception;
 use mvcex\api\lib\APIController;
 use mvcex\api\lib\APIResponse;
 use mvcex\api\lib\Command;

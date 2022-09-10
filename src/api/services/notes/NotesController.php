@@ -6,15 +6,13 @@ use Exception;
 use mvcex\api\lib\APIController;
 use mvcex\api\lib\Command;
 use mvcex\api\lib\APIResponse;
+use mvcex\api\lib\exceptions\ApiException;
 
 final class NotesController extends APIController {
 
     private function getNote(): APIResponse {
         $note = NoteModel::Read($this->db, $_GET);
-        if ($note instanceof Exception) {
-            return new APIResponse(400, [$note->getMessage()]);
-        }
-        return $note;
+        return 
     }
 
     private function getNotes(): APIResponse {
