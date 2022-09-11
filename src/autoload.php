@@ -18,7 +18,6 @@ spl_autoload_register(
                 'mvcex\\api\\lib\\exceptions\\invalidcredentials' => '/api/lib/exceptions/InvalidCredentias.php',
                 'mvcex\\api\\lib\\exceptions\\invalidinputs' => '/api/lib/exceptions/InvalidInputs.php',
                 'mvcex\\api\\lib\\exceptions\\notfound' => '/api/lib/exceptions/NotFound.php',
-                'mvcex\\api\\lib\\middleware\\common\\datavalidation' => '/api/lib/middleware/common/DataValidation.php',
                 'mvcex\\api\\lib\\middleware\\middlewarehandler' => '/api/lib/middleware/MiddlewareHandler.php',
                 'mvcex\\api\\lib\\middleware\\wareschain' => '/api/lib/middleware/WaresChain.php',
                 'mvcex\\api\\lib\\middleware\\warescontext' => '/api/lib/middleware/WaresContext.php',
