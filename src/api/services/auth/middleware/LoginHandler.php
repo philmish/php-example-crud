@@ -5,7 +5,6 @@ namespace mvcex\api\services\auth\middleware;
 use Exception;
 use mvcex\api\lib\exceptions\ApiException;
 use mvcex\api\lib\exceptions\DBException;
-use mvcex\api\lib\exceptions\InvalidInputs;
 use mvcex\api\lib\exceptions\InvalidCredentials;
 use mvcex\api\lib\middleware\MiddlewareHandler;
 use mvcex\api\lib\middleware\WaresContext;

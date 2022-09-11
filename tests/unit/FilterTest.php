@@ -3,10 +3,10 @@
 use PHPUnit\Framework\TestCase;
 use mvcex\api\lib\validation\Required;
 
+/**
+ * @covers mvcex\api\lib\validation\Required
+ */
 final class TestFilter extends TestCase {
-    /**
-     * @covers mvcex\api\lib\validation\Required
-     */
     public function testRequiredFilter(): void {
         $filter = new Required(["test"]);
         $data = [

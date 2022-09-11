@@ -28,7 +28,6 @@ final class WaresContextTest extends TestCase {
         $ctx->validateData($failingRules);
         $this->assertTrue($ctx->done);
     }
-
 }
 
 
