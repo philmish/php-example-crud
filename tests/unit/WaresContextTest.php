@@ -18,6 +18,17 @@ final class WaresContextTest extends TestCase {
         $this->assertTrue($ctx->done);
     }
 
+    public function testValidation(): void {
+        $ctx = new WaresContext(["test" => "test"]);
+        $rules = ["test" => "required"];
+        $ctx->validateData($rules);
+        $this->assertFalse($ctx->done);
+
+        $failingRules = ["new" => "required"];
+        $ctx->validateData($failingRules);
+        $this->assertTrue($ctx->done);
+    }
+
 }
 
 
