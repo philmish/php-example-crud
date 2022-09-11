@@ -26,6 +26,10 @@ final class WaresContext {
         $this->done = true;
     }
 
+    public function setData(array $data): void {
+        $this->data = $data;;
+    }
+
     public function validateData(array $rules): void {
         if (!$this->data) {
             $err = new InvalidInputs("Missing Input");
