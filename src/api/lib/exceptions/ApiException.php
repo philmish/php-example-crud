@@ -20,6 +20,7 @@ abstract class ApiException extends Exception {
     }
 
     private function logToErr(): void {
+        if(!defined('STDERR')) define('STDERR', fopen('php://stderr', 'wb'));
         if ($this->previous) {
             fwrite(STDERR, $this->previous->getTraceAsString());
         }
