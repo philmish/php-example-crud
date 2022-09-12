@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace mvcex\api\services\auth\handlers;
 
@@ -10,9 +12,11 @@ use mvcex\api\lib\middleware\MiddlewareHandler;
 use mvcex\api\lib\middleware\WaresContext;
 use mvcex\core\Database;
 
-final class LoginHandler implements MiddlewareHandler {
+final class LoginHandler implements MiddlewareHandler
+{
 
-    private function getHash(string $email, Database $db): string|InvalidCredentials|DBException {
+    private function getHash(string $email, Database $db): string|InvalidCredentials|DBException
+    {
         $stmt = "SELECT password FROM Users WHERE email = ?";
         try {
             $user = $db->row($stmt, [$email]);
@@ -25,20 +29,20 @@ final class LoginHandler implements MiddlewareHandler {
         return $user['password'];
     }
 
-    public function run(WaresContext $ctx): WaresContext {
-        $db = $ctx->getDB();
-        if (!$db) {
-            $ctx->setErr(new DBException("Something went wrong loging in."));
-            return $ctx;
-        } 
+    public function run(WaresContext $ctx): WaresContext
+    {
         $rules = [
             "email" => "required",
             "password" => "required"
         ];
         $ctx->validateData($rules);
         if ($ctx->done) {
-            return $ctx;
+         return $ctx;
         }
+        $db = $ctx->getDB();
+        if ($ctx->done) { 
+            return $ctx;
+        } 
         $hash = $this->getHash($ctx->getData()["email"], $db);
         if ($hash instanceof ApiException) {
             $ctx->setErr($hash);
