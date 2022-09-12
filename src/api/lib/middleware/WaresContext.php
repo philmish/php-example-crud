@@ -30,6 +30,14 @@ final class WaresContext {
         $this->data = $data;;
     }
 
+    public function addData(array $data): void {
+        if (!$this->data) {
+            $this->data = $data;
+            return;
+        }
+        $this->data = array_merge($this->data, $data);
+    }
+
     public function validateData(array $rules): void {
         if (!$this->data) {
             $err = new InvalidInputs("Missing Input");
