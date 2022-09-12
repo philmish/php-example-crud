@@ -31,7 +31,6 @@ spl_autoload_register(
                 'mvcex\\api\\routes\\notecontract' => '/api/routes/note/NoteContract.php',
                 'mvcex\\api\\routes\\notfoundcontract' => '/api/routes/errors/NotFoundContract.php',
                 'mvcex\\api\\services\\auth\\authcontroller' => '/api/services/auth/AuthController.php',
-                'mvcex\\api\\services\\auth\\loginmodel' => '/api/services/auth/LoginModel.php',
                 'mvcex\\api\\services\\auth\\middleware\\loginhandler' => '/api/services/auth/middleware/LoginHandler.php',
                 'mvcex\\api\\services\\notes\\middleware\\fetchnote' => '/api/services/notes/middleware/FetchNote.php',
                 'mvcex\\api\\services\\notes\\notemodel' => '/api/services/notes/NoteModel.php',
