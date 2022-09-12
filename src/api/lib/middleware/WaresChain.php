@@ -37,7 +37,7 @@ final class WaresChain {
         }
         do {
             $ctx = $this->nextHandler($ctx);
-        } while (count($this->handlers) > 0 && !$ctx->Done);
+        } while (count($this->handlers) > 0 && !$ctx->done);
         return $ctx->toResponse();
     }
 }
