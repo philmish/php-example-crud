@@ -31,13 +31,15 @@ final class FetchNote implements MiddlewareHandler {
             return $ctx;
         }
         $db = $ctx->getDB();
-        if (!$db) {
-            $err = new DBException("No DB connection");
-            $ctx->setErr($err);
+        if ($ctx->done) {
             return $ctx;
         }
         $data = $ctx->getData();
-        $result = $this->getNote($data['id'], $data['topic_id'], $db);
+        $result = $this->getNote(
+            (int)$data['id'],
+            (int)$data['topic_id'],
+            $db
+        );
         if ($result instanceof DBException) {
             $ctx->setErr($result);
             return $ctx;
