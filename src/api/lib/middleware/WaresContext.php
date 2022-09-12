@@ -4,6 +4,7 @@ namespace mvcex\api\lib\middleware;
 
 use mvcex\api\lib\APIResponse;
 use mvcex\api\lib\exceptions\ApiException;
+use mvcex\api\lib\exceptions\DBException;
 use mvcex\api\lib\exceptions\InvalidInputs;
 use mvcex\api\lib\validation\Validator;
 use mvcex\core\Database;
@@ -56,6 +57,9 @@ final class WaresContext {
     }
 
     public function getDB(): ?Database {
+        if (!$this->db) {
+            $this->setErr(new DBException("No database connection", null, null));
+        }
         return $this->db;
     }
 
