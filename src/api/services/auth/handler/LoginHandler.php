@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace mvcex\api\services\auth\middleware;
+namespace mvcex\api\services\auth\handlers;
 
 use Exception;
 use mvcex\api\lib\exceptions\ApiException;

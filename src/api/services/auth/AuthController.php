@@ -8,7 +8,7 @@ use mvcex\api\lib\Command;
 use mvcex\api\lib\DBConnector;
 use mvcex\api\lib\handlers\PostHandler;
 use mvcex\api\lib\middleware\WaresChain;
-use mvcex\api\services\auth\middleware\LoginHandler;
+use mvcex\api\services\auth\handlers\LoginHandler;
 
 final class AuthController extends APIController {
 

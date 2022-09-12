@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace mvcex\api\services\notes\middleware;
+namespace mvcex\api\services\notes\handlers;
 
 use Exception;
 use mvcex\api\lib\exceptions\ApiException;
@@ -9,7 +9,7 @@ use mvcex\api\lib\middleware\MiddlewareHandler;
 use mvcex\api\lib\middleware\WaresContext;
 use mvcex\core\Database;
 
-final class FetchNote extends MiddlewareHandler {
+final class FetchNote implements MiddlewareHandler {
     
     private function getNote(int $id, int $topic, Database $db): array|ApiException {
         $stmt = "SELECT id, created, content, topic_id FROM Notes WHERE id = ? AND topic_id = ?";
@@ -21,7 +21,7 @@ final class FetchNote extends MiddlewareHandler {
         return $result;
     }
 
-    public function run(WaresContext $ctx) {
+    public function run(WaresContext $ctx): WaresContext {
         $rules = [
             "id" => "required",
             "topic_id" => "required"

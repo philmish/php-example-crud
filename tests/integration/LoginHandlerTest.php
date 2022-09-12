@@ -3,13 +3,14 @@
 use mvcex\api\lib\middleware\WaresChain;
 use PHPUnit\Framework\TestCase;
 use mvcex\core\Database;
-use mvcex\api\services\auth\middleware\LoginHandler;
+use mvcex\api\services\auth\handlers\LoginHandler;
 use mvcex\api\lib\middleware\WaresContext;
 
 /**
 * @covers mvcex\api\services\auth\middleware\LoginHandler;
 *
 * @uses mvcex\api\services\auth\middleware\LoginHandler;
+* @uses mvcex\api\lib\middleware\WaresChain;
 */
 final class LoginHandlerTest extends TestCase {
 
