@@ -8,8 +8,6 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'mvcex\\api\\lib\\apicontroller' => '/api/lib/APIController.php',
-                'mvcex\\api\\lib\\apimodel' => '/api/lib/APIModel.php',
-                'mvcex\\api\\lib\\apimodelcollection' => '/api/lib/APIModelCollection.php',
                 'mvcex\\api\\lib\\apiresponse' => '/api/lib/APIResponse.php',
                 'mvcex\\api\\lib\\command' => '/api/lib/Commands.php',
                 'mvcex\\api\\lib\\dbconnector' => '/api/lib/DBConnector.php',
@@ -33,10 +31,12 @@ spl_autoload_register(
                 'mvcex\\api\\routes\\topicnotescontract' => '/api/routes/topicNotes/TopicNotesContract.php',
                 'mvcex\\api\\services\\auth\\authcontroller' => '/api/services/auth/AuthController.php',
                 'mvcex\\api\\services\\auth\\handlers\\loginhandler' => '/api/services/auth/handler/LoginHandler.php',
+                'mvcex\\api\\services\\links\\handler\\fetchlink' => '/api/services/links/handlers/FetchLink.php',
+                'mvcex\\api\\services\\links\\handlers\\fetchtopiclinks' => '/api/services/links/handlers/FetchTopicLinks.php',
+                'mvcex\\api\\services\\links\\linkscontroller' => '/api/services/links/LinksController.php',
                 'mvcex\\api\\services\\notes\\handlers\\createnote' => '/api/services/notes/handlers/CreateNote.php',
                 'mvcex\\api\\services\\notes\\handlers\\fetchnote' => '/api/services/notes/handlers/FetchNote.php',
                 'mvcex\\api\\services\\notes\\handlers\\fetchtopicnotes' => '/api/services/notes/handlers/FetchTopicNotes.php',
-                'mvcex\\api\\services\\notes\\notescollection' => '/api/services/notes/NotesCollection.php',
                 'mvcex\\api\\services\\notes\\notescontroller' => '/api/services/notes/NotesController.php',
                 'mvcex\\core\\database' => '/core/Database.php',
                 'mvcex\\core\\model' => '/core/Model.php',
