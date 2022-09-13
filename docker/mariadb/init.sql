@@ -60,3 +60,6 @@ VALUES ("Test Topic", 1);
 
 INSERT INTO Notes (content, topic_id)
 VALUES ("This is a test note", 1), ("This is a second test note", 1);
+
+INSERT INTO Links (label, url, topic_id)
+VALUES ("Google", "https://google.com", 1);

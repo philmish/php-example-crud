@@ -11,6 +11,7 @@ use mvcex\api\lib\handlers\PostHandler;
 use mvcex\api\lib\middleware\WaresChain;
 use mvcex\api\services\links\handlers\FetchLink;
 use mvcex\api\services\links\handlers\FetchTopicLinks;
+use mvcex\api\services\links\handlers\SaveLink;
 
 final class LinksController extends  APIController {
     

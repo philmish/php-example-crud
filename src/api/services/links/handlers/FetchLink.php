@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace mvcex\api\services\links\handler;
+namespace mvcex\api\services\links\handlers;
 
 use Exception;
 use mvcex\api\lib\exceptions\ApiException;

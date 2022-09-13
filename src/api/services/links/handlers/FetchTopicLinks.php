@@ -8,10 +8,11 @@ use mvcex\api\lib\exceptions\DBException;
 use mvcex\api\lib\exceptions\NotFound;
 use mvcex\api\lib\middleware\MiddlewareHandler;
 use mvcex\api\lib\middleware\WaresContext;
+use mvcex\core\Database;
 
 final class FetchTopicLinks implements MiddlewareHandler {
     
-    private function fetchLinks(int $topicId): array|ApiException {
+    private function fetchLinks(int $topicId, Database $db): array|ApiException {
         $args = [$topicId];
         $stmt = "SELECT * FROM Links WHERE topic_id=?;";
         try {
@@ -41,7 +42,7 @@ final class FetchTopicLinks implements MiddlewareHandler {
         if ($ctx->done) {
             return $ctx;
         }
-        $notes = $this->fetchLinks($ctx->getData()['topic_id'], $db);
+        $notes = $this->fetchLinks((int)$ctx->getData()['topic_id'], $db);
         if ($notes instanceof ApiException) {
             $ctx->setErr($notes);
             return $ctx;
