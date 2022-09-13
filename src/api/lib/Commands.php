@@ -8,4 +8,7 @@ enum Command {
     case FETCH_NOTE;
     case FETCH_NOTES;
     case CREATE_NOTE;
+    case FETCH_LINK;
+    case SAVE_LINK;
+    case FETCH_TOPIC_LINKS;
 }
