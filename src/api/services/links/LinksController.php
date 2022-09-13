@@ -29,7 +29,7 @@ final class LinksController extends  APIController {
     private function saveLink(): APIResponse {
         $handlers = [new PostHandler, new SaveLink()];
         $chain = new WaresChain(null, $handlers, $this->db);
-        $result = $chain->runChain();
+        $result = $chain->runChain(201);
         return $result;
     }
 

@@ -67,13 +67,13 @@ final class WaresContext {
         return $this->data;
     }
 
-    public function toResponse(): APIResponse {
+    public function toResponse(int $successStatus = 200): APIResponse {
         if ($this->error) {
             return $this->error->toResponse();
         }
         if (!$this->data) {
             $this->data = ["status" => "success"];
         }
-        return new APIResponse(200, [], $this->data);
+        return new APIResponse($successStatus, [], $this->data);
     }
 }

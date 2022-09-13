@@ -30,7 +30,7 @@ final class WaresChain {
         return $ctx;
     }
 
-    public function runChain(): APIResponse {
+    public function runChain(int $successStatus = 200): APIResponse {
         $ctx = new WaresContext($this->data);
         if ($this->db) {
             $ctx->injectDB($this->db);
@@ -38,6 +38,6 @@ final class WaresChain {
         do {
             $ctx = $this->nextHandler($ctx);
         } while (count($this->handlers) > 0 && !$ctx->done);
-        return $ctx->toResponse();
+        return $ctx->toResponse($successStatus);
     }
 }

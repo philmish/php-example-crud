@@ -1,9 +1,15 @@
 <?php declare(strict_types=1);
 
+use mvcex\core\Database;
 use mvcex\api\lib\middleware\WaresChain;
 use mvcex\api\services\notes\handlers\CreateNote;
 use PHPUnit\Framework\TestCase;
 
+/**
+* @covers mvcex\api\services\notes\handlers\CreateNote;
+*
+* @uses mvcex\api\lib\middleware\WaresChain;
+*/
 final class CreateNoteTest extends TestCase {
 
     protected function setUp(): void {
